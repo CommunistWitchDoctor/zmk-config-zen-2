@@ -1,0 +1,67 @@
+#include <behaviors.dtsi>
+#include <dt-bindings/zmk/keys.h>
+#include <dt-bindings/zmk/bt.h>
+
+#define PRINT_3    LG(LS(LC(N3)))
+#define PRINT_4    LG(LS(LC(N4)))
+#define EXP_AS     LG(LS(LA(W)))
+#define EXP_WEB    LG(LS(LA(S)))
+#define BRCCED     LA(C)
+
+/ {
+  chosen {
+    zmk,matrix_transform = &default_transform;
+    //zmk,matrix_transform = &five_column_transform;
+  };
+};
+
+
+/ {
+        keymap {
+                compatible = "zmk,keymap";
+
+                default_layer {
+                        label = "QWERTY";
+                        bindings = <
+
+   &kp ESC          &kp Q          &kp W          &kp F          &kp P          &kp G                              &kp J          &kp L          &kp U          &kp Y           &kp BRCCED      &kp SEMI
+   &lt 3 TAB        &kp A          &kp R          &kp S          &kp T          &kp D                              &kp H          &kp N          &kp E          &kp I           &kp O           &kp SQT
+   &kp LSHFT        &kp Z          &kp X          &kp C          &kp V          &kp B                              &kp K          &kp M          &kp COMMA      &kp DOT         &kp FSLH        &mt RSHIFT RET
+                                                  &kp LALT       &kp LGUI       &lt 1 SPACE                        &lt 2 BSPC     &kp RGUI       &kp LCTRL
+                        >;
+                };
+
+                lower_layer {
+                        label = "NUMBER";
+                        bindings = <
+
+   &kp TILDE        &kp EXCL       &kp AT         &kp HASH       &kp DLLR       &kp PRCNT                          &kp CARET      &kp AMPS       &kp ASTRK      &kp LPAR        &kp RPAR        &kp BKSP
+   &kp DEL          &none          &none          &none          &kp SPACE      &none                              &none          &kp UNDER      &kp PLUS       &kp LBRC        &kp RBRC        &kp PIPE
+   &kp LSHFT        &none          &none          &none          &none          &kp PRINT_3                        &kp PRINT_4    &kp LEFT       &kp DOWN       &kp UP          &kp RIGHT       &none 
+                                                  &none          &none          &trans                             &kp BSPC       &kp RGUI       &kp LCTRL
+                        >;
+                };
+
+                raise_layer {
+                        label = "SYMBOL";
+                        bindings = <
+
+   &kp GRAVE        &kp N1         &kp N2         &kp N3         &kp N4         &kp N5                             &kp N6         &kp N7         &kp N8         &kp N9          &kp N0          &kp BSPC
+   &kp DEL          &none          &none          &none          &none          &none                              &none          &kp MINUS      &kp EQUAL      &kp LBKT        &kp RBKT        &kp BSLH
+   &kp CAPS         &none          &none          &none          &none          &none                              &kp C_PP       &kp C_PREV     &kp C_VOL_UP   &kp C_VOL_DN    &kp C_NEXT      &none 
+                                                  &kp LALT       &kp LGUI       &kp SPACE                          &trans         &none          &none
+                        >;
+                };
+
+                BT_layer {
+                        label = "BT";
+                        bindings = <
+
+   &kp RCTRL        &none          &kp EXP_AS     &none          &none          &none                              &none          &kp F1         &kp F2         &kp F3          &kp F4           &none 
+   &none            &none          &none          &kp EXP_WEB    &none          &none                              &none          &kp F5         &kp F6         &kp F7          &kp F8           &none 
+   &bt BT_CLR       &bt BT_SEL 0   &bt BT_SEL 1   &bt BT_SEL 2   &bt BT_SEL 3   &bt BT_SEL 4                       &none          &kp F9         &kp F10        &kp F11         &kp F12          &none 
+                                                  &none          &none          &none                              &none          &none          &none
+                        >;
+                };
+        };
+};
